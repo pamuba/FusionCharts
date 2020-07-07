@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+     <!-- Step 1 - Including AngularJS -->
+     <script type="text/javascript"
+     src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.7.2/angular.min.js"></script>
+     <!-- Step 2 - Including the fusioncharts core library -->
+     <script type="text/javascript" src="https://cdn.fusioncharts.com/fusioncharts/latest/fusioncharts.js"></script>
+     <!-- Step 3 - Including the angularjs-fusioncharts directive-->
+     <script type="text/javascript" src="angular-fusioncharts.js"></script>
+     <!-- Step 4 - Including the fusion theme -->
+     <script type="text/javascript"
+     src="https://cdn.fusioncharts.com/fusioncharts/latest/themes/fusioncharts.theme.fusion.js"></script>
+    <title>Document</title>
+</head>
+<body ng-app="fusioncharts-demo">
+    <div ng-controller="chartController">
+        <div fusioncharts width="600" height="400" type="column2d" datasource="{{dataSource}}" events="events"></div>
+        <p>The value that you have selected is: {{selectedValue}}</p>
+    </div>
+    <script>
+        var app = angular.module('fusioncharts-demo', ['ng-fusioncharts']);
+        
+        app.controller('chartController', function($scope, $rootScope){
+            $scope.dataSource = {
+                chart:{
+                    caption:"Harry's SuperMart",
+                    subcaption:"Top 5 stores in last month by revenue",
+                    numberPrefix:"$",
+                    theme:"ocean"
+                },
+                data:[
+                    {
+                        label:"BakersField Central",
+                        value:"880000"
+                    },
+                    {
+                        label:"Garden Froove Harbour",
+                        value:"730000"
+                    },
+                    {
+                        label:"Los Angeles Topanga",
+                        value:"590000"
+                    },
+                    {
+                        label:"Compton-Rancho Dom",
+                        value:"520000"
+                    }
+                ]
+            };
+
+            $scope.selectedValue = "nothing";
+
+            $scope.events = {
+                dataplotclick: function(ev, props){
+                    $scope.$apply(function(){
+                        console.log(props);
+                        $scope.selectedValue = props.displayValue;
+                    })
+                }
+            }
+        }) 
+    </script>
+</body>
+</html>
