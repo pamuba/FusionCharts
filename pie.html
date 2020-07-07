@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Step 1 - Including AngularJS -->
+    <script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.7.2/angular.min.js"></script>
+    <!-- Step 2 - Including the fusioncharts core library -->
+    <script type="text/javascript" src="https://cdn.fusioncharts.com/fusioncharts/latest/fusioncharts.js"></script>
+    <!-- Step 3 - Including the angularjs-fusioncharts directive-->
+    <script type="text/javascript" src="angular-fusioncharts.js"></script>
+    <!-- Step 4 - Including the fusion theme -->
+    <script type="text/javascript"
+        src="https://cdn.fusioncharts.com/fusioncharts/latest/themes/fusioncharts.theme.fusion.js"></script>
+    <title>Document</title>
+    <title>Document</title>
+</head>
+<body ng-app="fusioncharts-demo">
+    <div ng-controller="chartController">
+        <fusioncharts width="600" height="400" type="pie3d" datasource="{{myDataSource}}"></fusioncharts>
+    </div>
+    <script>
+        var app = angular.module('fusioncharts-demo', ['ng-fusioncharts']);
+        
+        app.controller('chartController', function($scope, $rootScope){
+            $scope.myDataSource = {
+                chart:{
+                    caption:"Age profile of website visitors",
+                    subcaption:"Last Year",
+                    startingangle:"120",
+                    showlabels:"0",
+                    showlegend:"1",
+                    enablemultislicing:"0",
+                    slicingdistance:"15",
+                    showpercentvalues:"1",
+                    showpercentintooltip:"0",
+                    plottooltext:"Age group : $label Total visits : $datavalue",
+                    theme:"fint"
+                },
+                data:[
+                    {
+                        label:"Teenage",
+                        value:"1250400"
+                    },
+                    {
+                        label:"Adult",
+                        value:"1436687"
+                    },
+                    {
+                        label:"Mid-age",
+                        value:"1050700"
+                    },
+                    {
+                        label:"Senior",
+                        value:"49100"
+                    }
+                ]
+            }
+        }) 
+    </script>
+</body>
+</html>
