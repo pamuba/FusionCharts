@@ -15,8 +15,12 @@
 </head>
 <body ng-app="fusioncharts-demo">
     <div ng-controller="chartController">
-        <div fusioncharts width="600" height="400" type="column2d" datasource="{{dataSource}}" events="events"></div>
-        <p>The value that you have selected is: {{selectedValue}}</p>
+        <!-- <div fusioncharts width="600" height="400" type="column2d" datasource="{{dataSource}}" events="events"></div>
+        <p>The value that you have selected is: {{selectedValue}}</p> -->
+
+        <div fusioncharts width="600" height="400" type="column2d" datasource="{{dataSource}}"></div>
+        <p><a class="btn btn-primary" ng-click="updateMyChartData()">Click to Change Chart</a></p>
+    </div>
     </div>
     <script>
         var app = angular.module('fusioncharts-demo', ['ng-fusioncharts']);
@@ -49,16 +53,25 @@
                 ]
             };
 
-            $scope.selectedValue = "nothing";
+            // $scope.selectedValue = "nothing";
 
-            $scope.events = {
-                dataplotclick: function(ev, props){
-                    $scope.$apply(function(){
-                        console.log(props);
-                        $scope.selectedValue = props.displayValue;
-                    })
-                }
+            // $scope.events = {
+            //     dataplotclick: function(ev, props){
+            //         $scope.$apply(function(){
+            //             console.log(props);
+            //             $scope.selectedValue = props.displayValue;
+            //         })
+            //     }
+            // }
+
+            $scope.updateMyChartData = function(){
+                $scope.dataSource.data[2].label = "This Label is Updated";
+                $scope.dataSource.data[2].value = "420000";
+
+                $scope.dataSource.data[3].label = "This Label is Updated As Well";
+                $scope.dataSource.data[2].value = "210000";
             }
+            
         }) 
     </script>
 </body>
